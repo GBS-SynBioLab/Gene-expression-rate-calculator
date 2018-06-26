@@ -2,7 +2,7 @@ function fluorescence_module(FP)
 
 % gathers data from file
 filename = 'data';
-data = xlsread(filename, 'GFP');
+data = xlsread(filename, 'FP');
 time = data(:,1);
 GFPdata = data(:,2:end);
 index = csvread('max_growth_rate_index.csv');
