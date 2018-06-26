@@ -20,7 +20,7 @@ warning('off','all');
 growth_rate_module;
 
 % - fluorescence_module(FP) dependencies: growth_rate_module
-% - for this module: i) rename an xlxs sheet as "GFP" (RFP, YFP or CFP) ; ii)Add 
+% - for this module: i) rename an xlxs sheet as "FP"; ii)Add 
 %   time(in minutes) in column A; iii) Add fluorescence readings from column B onwards
 FP = 'YFP';
 fluorescence_module(FP);
