@@ -11,7 +11,9 @@ Experimental design (microplate layout):
 Data analysis will only take place correctly if the following microplate layout is applied. 
 
 Column 1: Media blank
+
 Column 2: Control cells for growth rate and autofluorescence
+
 Column 3-12: Sample experimental conditions
 
 Rows A-H: Replicates
