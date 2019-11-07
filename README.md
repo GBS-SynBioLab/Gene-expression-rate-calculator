@@ -3,8 +3,9 @@ Author: Nicolas Kylilis PhD
 
 Intended purpose:
 -----------------
-Matlab program for automatic calculation of gene expression rate from time-course fluorescence assays on microplate-reader for bacterial cells
+Automated data analysis workflow for the calculation of gene expression rate
 
+Suitable for time-course fluorescence assays on microplate-reader for bacterial cells
 
 Experimental design (microplate layout):
 ----------------------------------------
