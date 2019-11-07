@@ -26,8 +26,8 @@ for i = 1:8     %number of rows in 96-well plate = 8
     
 end
 
-xlswrite('max_growth_rate_analysis', matrixGR);
-xlswrite('max_growth_rate_index', matrixGRindex);
+xlswrite('File_12_max_growth_rate_analysis', matrixGR);
+xlswrite('File_13_max_growth_rate_index', matrixGRindex);
 
 
 %% growth curves
@@ -52,7 +52,6 @@ function OD700_data_row = growth_curves(x1,x2, data, time)
     end
 
     a = [time OD700_data_row];
-    fig = figure;
     for i = 1:12
         subplot(3,4,i)
         plot(time, OD700_data_row(:,i),'k.','MarkerSize',5)
@@ -62,10 +61,9 @@ function OD700_data_row = growth_curves(x1,x2, data, time)
         xlim([0 1500]);
         title('Sample: '  + string(x1-1+i) )
     end
-    saveas(gcf,char('Growth curves- Samples '  + string(x1) + '-' + string(x2)+'.png'))
-    close(fig);
+    saveas(gcf,char('Fig_01 - Growth curves - Samples '  + string(x1) + '-' + string(x2)+'.png'))
 
-    xlswrite(char('growth_curves - Samples ' + string(x1) + '-' + string(x2)), a);
+    xlswrite(char('File_01 - Growth_curves - Samples ' + string(x1) + '-' + string(x2)), a);
 
     % subtraction of media autofluorescence value. This is required for growth rate
     %calculations
@@ -98,7 +96,6 @@ for g = 1:12
 end
 c=zeros(1,12);
 k = [c; c; k; c];
-fig = figure;
 for i = 1:12
     subplot(3,4,i)
     plot(time, k(:,i),'k.','MarkerSize',5)
@@ -108,10 +105,9 @@ for i = 1:12
     xlim([0 1500]);
     title('Sample: '  + string(x1-1+i) )
 end
-saveas(gcf,char('Growth rate- Samples '  + string(x1) + '-' + string(x2)+'.png'))
-close(fig);
+saveas(gcf,char('Fig_02 - Growth rate - Samples '  + string(x1) + '-' + string(x2)+'.png'))
 
-xlswrite(char('growth_rate_analysis - Samples ' + string(x1) + '-' + string(x2)), k);
+xlswrite(char('File_02 - growth_rate_analysis - Samples ' + string(x1) + '-' + string(x2)), k);
 
 end
 
