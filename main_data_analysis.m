@@ -22,7 +22,7 @@ growth_rate_module;
 % - fluorescence_module(FP) dependencies: growth_rate_module
 % - for this module: i) rename an xlxs sheet as "FP"; ii)Add 
 %   time(in minutes) in column A; iii) Add fluorescence readings from column B onwards
-FP = 'YFP';
+FP = 'GFP';
 fluorescence_module(FP);
 
 % add here more fluorescence modules for other fluorescent reportes

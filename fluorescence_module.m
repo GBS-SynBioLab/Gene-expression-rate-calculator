@@ -5,13 +5,32 @@ filename = 'data';
 data = xlsread(filename, FP);
 time = data(:,1);
 GFPdata = data(:,2:end);
-index = csvread('max_growth_rate_index.csv');
-max_gr = csvread('max_growth_rate_analysis.csv');
+index = csvread('File_13_max_growth_rate_index.csv');
+max_gr = csvread('File_12_max_growth_rate_analysis.csv');
 
 %% total GFP
+% Plot total well fluorescence
 x1 = 1;
 x2 = 12;
+g = [time GFPdata];
+for row = 1:8 %repeats
+        for i = 1:12
+            subplot(3,4,i)
+            plot(time, GFPdata(:,x1-1+i),'k.','MarkerSize',5)
+            xlabel('Time (minutes)')
+            ylabel('Fluorescence (au)')
+            %title('Sample: '  + string(x1-1+i) )
+        end
+        saveas(gcf,char('Fig_03 - Total well Fluorescence Intensity - Samples '  + string(x1) + '-' + string(x2)+'.png'))
+        xlswrite(char('File_03 - Total well Fluorescence Intensity - Samples ' + string(x1) + '-' + string(x2)), g);
+
+        x1 = x1+12;
+        x2 = x2+12;
+end
+
 % correct fluorescence signal for media autofluorescence
+x1 = 1;
+x2 = 12;
 for row = 1:8 %repeats
     
     for col = x1+1:x2 % samples
@@ -27,7 +46,7 @@ for row = 1:8 %repeats
     x2 = x2+12;
 end
 GFPdata(GFPdata<0) = 0;
-xlswrite(string(FP)+'_data', GFPdata);
+xlswrite('File_21-'+string(FP)+'_data', GFPdata);
 
 %% GFP per cell
 abs_data = xlsread(filename, 'OD700');
@@ -61,23 +80,21 @@ x1=1;
 x2=12;
 for j=1:8
  
-    fig = figure;
     h=1;
     for s = x1:x2
         subplot(3,4,h)
         plot(time, GFP_per_cell(:,s),'k.','MarkerSize',5)
         xlabel('time (minutes)');
-        ylabel(string(FP) + ' / cell');
+        ylabel(string(FP) + 'fluoresce/cell');
         xlim([0 1500]);
-        title('Sample: '  + string(s));
+        %title('Sample: '  + string(s));
         vline(index(j,h)*20-20, 'r--', 'max gr');
         h = h+1;
     end
-    saveas(gcf,char(string(FP) + 'percell- Samples '  + string(x1) + '-' + string(x2)+'.png'))
-    close(fig);
+    saveas(gcf, char('Fig_04-' + string(FP) + 'percell-Samples' + string(x1) + '-' + string(x2)+'.png'))
     
     a = [time GFP_per_cell(:,x1:x2)];
-    xlswrite(char(string(FP) + 'percell - Samples ' + string(x1) + '-' + string(x2)), a);
+    xlswrite(char('File_04-'+ string(FP) + 'percell - Samples ' + string(x1) + '-' + string(x2)), a);
     
     x1 = x1+12;
     x2 = x2+12;
@@ -109,23 +126,21 @@ end
 x1=1;
 x2=12;
 for j=1:8
-    fig = figure;
     h=1;
     for s = x1:x2
         subplot(3,4,h)
         plot(time, GFP_pr_matrix(:,s),'k.','MarkerSize',5)
         xlabel('time (minutes)');
-        ylabel(string(FP) + ' production rate');
+        ylabel(string(FP) + ' prod.rate (au/h)');
         xlim([0 1500]);
-        title('Sample: '  + string(s));
+        %title('Sample: '  + string(s));
         vline(index(j,h)*20-20, 'r--', 'max gr');
         h = h+1;
     end
-    saveas(gcf,char(string(FP) + 'production rate- Samples '  + string(x1) + '-' + string(x2)+'.png'))
-    close(fig);
+    saveas(gcf,char('Fig_05-'+ string(FP) + 'production rate- Samples '  + string(x1) + '-' + string(x2)+'.png'))
     
     a = [time GFP_pr_matrix(:,x1:x2)];
-    xlswrite(char(string(FP) + 'production rate - Samples ' + string(x1) + '-' + string(x2)), a);
+    xlswrite(char('File_05-'+ string(FP) + 'production rate - Samples ' + string(x1) + '-' + string(x2)), a);
     
     x1 = x1+12;
     x2 = x2+12;
@@ -152,5 +167,5 @@ for r = 1:8
     x2 = x2+12;
 end
 
-xlswrite(char(string(FP) + '_expression rates'), rate);
+xlswrite(char('File_22-'+string(FP) + '_expression rates'), rate);
 end
