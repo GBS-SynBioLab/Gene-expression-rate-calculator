@@ -12,7 +12,7 @@ Data analysis will only take place correctly if the following microplate layout 
 
 Column 1: Media blank || Column 2: Control cells for growth rate and autofluorescence || Columns 3-12: Sample conditions
 
-Rows A up to H: Replicates
+Rows A-H: Replicates
 
 
 Data analysis:
