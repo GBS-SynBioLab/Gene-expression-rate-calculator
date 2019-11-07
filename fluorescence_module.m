@@ -85,7 +85,7 @@ for j=1:8
         subplot(3,4,h)
         plot(time, GFP_per_cell(:,s),'k.','MarkerSize',5)
         xlabel('time (minutes)');
-        ylabel(string(FP) + 'fluoresce/cell');
+        ylabel(string(FP) + 'fluorescence/cell');
         xlim([0 1500]);
         %title('Sample: '  + string(s));
         vline(index(j,h)*20-20, 'r--', 'max gr');
