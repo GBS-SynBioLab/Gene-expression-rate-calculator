@@ -53,19 +53,19 @@ function OD700_data_row = growth_curves(x1,x2, data, time)
 
     a = [time OD700_data_row];
     for i = 1:12
-        subplot(3,4,i)
-        plot(time, OD700_data_row(:,i),'k.','MarkerSize',5)
-        xlabel('time (minutes)')
-        ylabel('OD700')
+        subplot(3,4,i);
+        plot(time, OD700_data_row(:,i),'k.','MarkerSize',5);
+        xlabel('time (minutes)');
+        ylabel('OD700');
         ylim([0 0.6]);
-        xlim([0 1500]);
-        title('Sample: '  + string(x1-1+i) )
+        %xlim([0 1500]);
+        title('Sample: '  + string(x1-1+i));
     end
     saveas(gcf,char('Fig_01 - Growth curves - Samples '  + string(x1) + '-' + string(x2)+'.png'))
 
     xlswrite(char('File_01 - Growth_curves - Samples ' + string(x1) + '-' + string(x2)), a);
 
-    % subtraction of media autofluorescence value. This is required for growth rate
+    % subtraction of media absorbance value. This is required for growth rate
     %calculations
     OD700_data_row = OD700_data_row - OD700_data_row(1,1);
     OD700_data_row(OD700_data_row<0.01) = 0.01;
@@ -87,8 +87,8 @@ for g = 1:12
     for i = 3:(length(time)-3)
         A = [ln_OD700_row(i,g)  ln_OD700_row(i-1,g) ln_OD700_row(i+1,g)];
         B = [ln_OD700_row(i-1,g) ln_OD700_row(i-2,g) ln_OD700_row(i,g)];
-        y = mean(A) - mean(B);
-        growth_r = y/(2*timestep);
+        dy = mean(A) - mean(B);
+        growth_r = dy/timestep;
         v(1,i)=growth_r;
     end
     k(:,g) = v;
@@ -97,13 +97,13 @@ end
 c=zeros(1,12);
 k = [c; c; k; c];
 for i = 1:12
-    subplot(3,4,i)
-    plot(time, k(:,i),'k.','MarkerSize',5)
-    xlabel('time (minutes)')
-    ylabel('growth rate(h-1)')
-    ylim([0 0.8]);
-    xlim([0 1500]);
-    title('Sample: '  + string(x1-1+i) )
+    subplot(3,4,i);
+    plot(time, k(:,i),'k.','MarkerSize',5);
+    xlabel('time (minutes)');
+    ylabel('growth rate(h-1)');
+    ylim([0 1.5]);
+    %xlim([0 1500]);
+    title('Sample: '  + string(x1-1+i))
 end
 saveas(gcf,char('Fig_02 - Growth rate - Samples '  + string(x1) + '-' + string(x2)+'.png'))
 
