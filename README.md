@@ -25,7 +25,7 @@ Methodology
 - Growth rate calculation:
 
 Based on formula:
-λ=ln⁡〖(〖OD〗_t2-〖OD〗_t1)〗/dt
+λ=[ln(OD_t2)- ln(OD_t1)]/dt
 
 Where t = data collection time-point
 
